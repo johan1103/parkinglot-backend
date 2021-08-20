@@ -1,21 +1,104 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>parking_car</title>
-</head>
-<body>
-    <div>Parking List (truck)</div>
-        {% if parking_list %}
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <div class="page">
+        <header tabindex="0"><span id="header_index">주차장 현황</span></header>
+
+        <!-- https://codepen.io/dannievinther/pen/NvZjvz -->
+        <div id="nav-container">
+            <div class="bg"></div>
+            <div id="nav-button" tabindex="0">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div id="nav-content" tabindex="0">
+                <ul>
+                    <li>
+                        <a href="#0">주차장 현황</a>
+                        <ul>
+                            <li><a href="#0">화물차 주자장</a></li>
+                            <li><a href="#0">승용차 주차장</a></li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#0">작업 현황</a>
+                        <ul>
+                            <li><a href="#0">본선 작업</a></li>
+                            <li><a href="#0">야드 작업</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="small"><a target="blank" href="https://lab.hanium.or.kr/21_HP048/21_hp048">21_HP048
+                        GitLab</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <!-- <div id="park_pos" style="margin-bottom: 0;">
+                <button class="btn btn-primary section-button" id="parkinglot_button_1">구역1</button>
+                <button class="btn btn-primary section-button" id="parkinglot_button_2">구역2</button>
+            </div> -->
+
+            <p id="section-name">화물차 주차구역</p>
+            <button id="refresh-button"><time id="js-clock1">00:00</time> 기준 <img src="src/refresh.svg"></button>
+
+            <div class="parking-lot">
+                <ul id="parkSlide">
+                    <li class="park">
+                        <div class="parktable_1" id="p_area1">1</div>
+                        <div class="parktable_1" id="p_area2">2</div>
+                        <div class="parktable_1" id="p_area3">3</div>
+                        <div class="parktable_1" id="p_area4">4</div>
+
+                        <div class="parktable_1 parkarea_under" id="p_area5">5</div>
+                        <div class="parktable_1 parkarea_under" id="p_area6">6</div>
+                        <div class="parktable_1 parkarea_under" id="p_area7">7</div>
+                        <div class="parktable_1 parkarea_under" id="p_area8">8</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="parking-lot-status">
+                <div id="empty-status">
+                    <span class="park_status_icon" id="first_status_icon"style="background-color: #bac3c6;">ㅤ</span>
+                    <span class="park_status" id="first_status">주차가능</span>
+                </div>
+                <div id="truck-status">
+                    <span class="park_status_icon" id="second_status_icon" style="background-color: rgb(70, 102, 178);">ㅤ</span>
+                    <span class="park_status" id="second_status">주차중(화물차)</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let posts = [
             {% for parks in parking_list %}
-            <h5>
-                {{ parks.location }}
-                {{ parks.state }}
-            </h5>
+                {
+                    location: "{{ parks.location }}",
+                    state: "{{ parks.state }}"
+                },
             {% endfor %}
-        {% endif %}
-</body>
-</html>
+        ]
+        let $area=[document.getElementById("p_area1"), document.getElementById("p_area2"),
+            document.getElementById("p_area3"),document.getElementById("p_area4"),document.getElementById("p_area5"),
+        document.getElementById("p_area6"),document.getElementById("p_area7"),document.getElementById("p_area8"),]
+        for(let i=0;i<$area.length;i++) {
+            if (posts[i].state == "True") {
+                $area[i].style['backgroundColor'] = "#bac3c6";
+                $area[i].style['color'] = "#bac3c6";
+            } else {
+                $area[i].style['backgroundColor'] = "#4666b2"
+                $area[i].style['color'] = "#4666b2"
+            }
+        }
+    </script>
+{% endblock %}

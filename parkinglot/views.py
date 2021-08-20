@@ -14,5 +14,4 @@ class Parkinglot_truck(View):
     def get(self, request):
         parking_data=ParkingState.objects.values()
         parking_list=list(parking_data)
-        parking_list=parking_list[4:8]
         return render(request, 'parkinglot/parking_truck.html', context={'parking_list': list(parking_list)})
