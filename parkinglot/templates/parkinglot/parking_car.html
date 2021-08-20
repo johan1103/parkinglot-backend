@@ -1,21 +1,116 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>parking_car</title>
-</head>
-<body>
-    <div>Parking List (car)</div>
-        {% if parking_list %}
+{% extends 'base.html' %}
+{% block content %}
+
+       <div class="page">
+        <header tabindex="0"><span id="header_index">주차장 현황</span></header>
+
+        <!-- https://codepen.io/dannievinther/pen/NvZjvz -->
+        <div id="nav-container">
+            <div class="bg"></div>
+            <div id="nav-button" tabindex="0">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div id="nav-content" tabindex="0">
+                <ul>
+                    <li>
+                        <a href="#0">주차장 현황</a>
+                        <ul>
+                            <li><a href="#0">화물차 주자장</a></li>
+                            <li><a href="#0">승용차 주차장</a></li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#0">작업 현황</a>
+                        <ul>
+                            <li><a href="#0">본선 작업</a></li>
+                            <li><a href="#0">야드 작업</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="small"><a target="blank" href="https://lab.hanium.or.kr/21_HP048/21_hp048">21_HP048
+                            GitLab</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+                <input type="radio" name="pos" id="pos1" checked>
+                <input type="radio" name="pos" id="pos2">
+                <p class="park_pos" style="margin-bottom: 0;">
+                    <label for="parklot_1">
+                        <span type="button" class="btn btn-primary" id="parkinglot_button_1"
+                            onclick="turnParkinglot_1();">구역1</span>
+                    </label>
+                    <label for="parklot_2">
+                        <span type="button" class="btn btn-primary" id="parkinglot_button_2"
+                            onclick="turnParkinglot_2();">구역2</span>
+                    </label>
+                </p>
+                        <ul id="parkSlide">
+                            <li class="park" id="area1" onclick="turnParkinglot_1();">
+                                <div class="parktable_1" id="p_area1">1</div>
+                                <div class="parktable_1" id="p_area2">2</div>
+                                <div class="parktable_1" id="p_area3">3</div>
+                                <div class="parktable_1" id="p_area4">4</div>
+                            </li>
+                            <div class="park_status" id="first_status">주차가능</div>
+                            <div class="park_status" id="second_status">주차중(화물차)</div>
+                            <div class="park_status" id="third_status">주차중(승용차)</div>
+                            <div class="park_status_icon" id="first_status_icon">ㅤ</div>
+                            <div class="park_status_icon" id="second_status_icon">ㅤ</div>
+                            <div class="park_status_icon" id="third_status_icon">ㅤ</div>
+                        </ul>
+        </div>
+    </div>
+    <!-- post_list.html (before render) -->
+        <script>
+            let posts = [
             {% for parks in parking_list %}
-            <h5>
-                {{ parks.location }}
-                {{ parks.state }}
-            </h5>
-            {% endfor %}
-        {% endif %}
-</body>
-</html>
+                  {
+                     location: "{{ parks.location }}",
+                     state: "{{ parks.state }}"
+                  },
+                {% endfor %}
+            ]
+        let $area1=document.getElementById("p_area1")
+        let $area2=document.getElementById("p_area2")
+        let $area3=document.getElementById("p_area3")
+        let $area4=document.getElementById("p_area4")
+        if(posts[0].state=="True"){
+            $area1.style['backgroundColor']="#a95654";
+            $area1.style['color']="#a95654";
+        }
+        else{
+            $area1.style['backgroundColor']="#4666b2"
+            $area1.style['color']="#4666b2"
+        }
+        if(posts[1].state=="True"){
+            $area2.style['backgroundColor']="#a95654"
+            $area2.style['color']="#a95654";
+        }
+        else{
+            $area2.style['backgroundColor']="#4666b2"
+            $area2.style['color']="#4666b2"
+        }
+        if(posts[2].state=="True"){
+            $area3.style['backgroundColor']="#a95654"
+            $area3.style['color']="#a95654";
+        }
+        else{
+            $area3.style['backgroundColor']="#4666b2"
+            $area3.style['color']="#4666b2"
+        }
+        if(posts[3].state=="True"){
+            $area4.style['backgroundColor']="#a95654"
+            $area4.style['color']="#a95654";
+        }
+        else{
+            $area4.style['backgroundColor']="#4666b2"
+            $area4.style['color']="#4666b2"
+        }
+        </script>
+
+{% endblock %}
