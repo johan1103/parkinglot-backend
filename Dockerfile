@@ -12,6 +12,8 @@ RUN echo "SECRET_KEY=django-insecure-q$6x)3@^prkv%790e==^@*e_%@%v%ljj&o6zx2&-b)n
 
 RUN python manage.py migrate
 
+RUN python manage.py collectstatic
+
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0:8000"]
+CMD ["gunicorn", "smac.wsgi", "--bind", "0.0.0.0:8000"]
