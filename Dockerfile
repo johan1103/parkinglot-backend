@@ -4,6 +4,8 @@ WORKDIR /home/
 
 RUN echo "testing"
 
+RUN echo "testing"
+
 RUN git clone https://github.com/johan1103/parkinglot-backend.git
 
 WORKDIR /home/parkinglot-backend/
