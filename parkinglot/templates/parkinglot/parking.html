@@ -2,6 +2,7 @@
 {% block content %}
 
 
+
     <div class="page">
         <header tabindex="0"><span id="header_index">주차장 현황</span></header>
 
@@ -32,48 +33,51 @@
                     </li>
 
                     <li class="small"><a target="blank" href="https://lab.hanium.or.kr/21_HP048/21_hp048">21_HP048
-                        GitLab</a></li>
+                            GitLab</a></li>
                 </ul>
             </div>
         </div>
 
         <div id="main">
-            <!-- <div id="park_pos" style="margin-bottom: 0;">
-                <button class="btn btn-primary section-button" id="parkinglot_button_1">구역1</button>
-                <button class="btn btn-primary section-button" id="parkinglot_button_2">구역2</button>
-            </div> -->
-
-            <p id="section-name">화물차 주차구역</p>
-            <button id="refresh-button"><time id="js-clock1">00:00</time> 기준 <img src="src/refresh.svg"></button>
-
-            <div class="parking-lot">
-                <ul id="parkSlide">
-                    <li class="park">
-                        <div class="parktable_1" id="p_area1">1</div>
-                        <div class="parktable_1" id="p_area2">2</div>
-                        <div class="parktable_1" id="p_area3">3</div>
-                        <div class="parktable_1" id="p_area4">4</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="parking-lot-status">
-                <div id="empty-status">
-                    <span class="park_status_icon" id="first_status_icon"style="background-color: #bac3c6;">ㅤ</span>
-                    <span class="park_status" id="first_status">주차가능</span>
-                </div>
-                <div id="truck-status">
-                    <span class="park_status_icon" id="second_status_icon" style="background-color: rgb(70, 102, 178);">ㅤ</span>
-                    <span class="park_status" id="second_status">주차중(화물차)</span>
+            <div class="truck-section" style="margin-top: 2vh;">
+                <h3 style="text-align: center;">화물차 주차구역</h3>
+                <span style="text-align: center;" class="truck-section">여유</span>
+                <div class="board">
+                    <p>이용가능</p>
+                    <div style="height: 50%; padding: 7%;">
+                        <h1><a href="/parking/car/">3면 / 8면</a></h1>
+                    </div>
+                    <div class="board-menu">
+                        <button>자세히보기</button>
+                        <button id="menu-clock"><img src="src/refresh.svg"> <time id="js-clock1">00:00</time>
+                            기준</button>
+                    </div>
                 </div>
 
             </div>
 
+            <div class="car-section">
+                <h3>승용차 주차구역</h3>
+                <span class="ca-section">혼잡</span>
+                <div class="board">
+                    <p>이용가능</p>
+                    <div style="height: 50%; padding: 7%;">
+                        <h1><a href="/parking/truck/">3면 / 8면</a></h1>
+                    </div>
+                    <div class="board-menu">
+                        <button>자세히보기</button>
+                        <button id="menu-clock"><time id="js-clock2">00:00</time> 기준</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
-
-
+    <!-- Script -->
+    <script src="js/clock.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
     <script>
         let posts = [
             {% for parks in parking_list %}
@@ -96,4 +100,5 @@
             }
         }
     </script>
+
 {% endblock %}

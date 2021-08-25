@@ -15,3 +15,9 @@ class Parkinglot_truck(View):
         parking_data=ParkingState.objects.values()
         parking_list=list(parking_data)
         return render(request, 'parkinglot/parking_truck.html', context={'parking_list': list(parking_list)})
+
+class Parkinglot_main(View):
+    def get(self, request):
+        parking_data=ParkingState.objects.values()
+        parking_list=list(parking_data)
+        return render(request, 'parkinglot/parking.html', context={'parking_list' : list(parking_list)})
