@@ -24,7 +24,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '165.246.241.59', '158.247.202.164', '158.247.202.164/']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '165.246.241.59', '158.247.202.164', '192.168.0.16']
 
 DATABASES = {
     'default': {

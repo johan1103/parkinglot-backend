@@ -14,18 +14,18 @@
                     <li>
                         <a href="/parking/">주차장 현황</a>
                         <ul>
-                            <li><a href="/parking/car/">화물차 주자장</a></li>
-                            <li><a href="/parking/truck/">승용차 주차장</a></li>
+                            <li><a href="/parking/truck/">화물차 주자장</a></li>
+                            <li><a href="/parking/car/">승용차 주차장</a></li>
                         </ul>
                     </li>
                     <br>
-                    <li>
-                        <a href="#0">작업 현황</a>
-                        <ul>
-                            <li><a href="#0">본선 작업</a></li>
-                            <li><a href="#0">야드 작업</a></li>
-                        </ul>
-                    </li>
+{#                    <li>#}
+{#                        <a href="#0">작업 현황</a>#}
+{#                        <ul>#}
+{#                            <li><a href="#0">본선 작업</a></li>#}
+{#                            <li><a href="#0">야드 작업</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
 
                     <li class="small"><a target="blank" href="https://lab.hanium.or.kr/21_HP048/21_hp048">21_HP048
                             GitLab</a></li>
@@ -36,16 +36,16 @@
         <div id="main">
             <div class="truck-section" style="margin-top: 2vh;">
                 <h3 style="text-align: center;">화물차 주차구역</h3>
-                <span style="text-align: center;" class="truck-section">여유</span>
+                <span style="text-align: center;" class="truck-section"><span id="complex_1"></span></span>
                 <div class="board">
                     <p>이용가능</p>
                     <div style="height: 50%; padding: 7%;">
-                        <h1><a href="/parking/car/">3면 / 8면</a></h1>
+                        <h1><a href="/parking/truck/" style="text-decoration: none; color: black;"><span id="word"></span>면 / 8면</a></h1>
                     </div>
                     <div class="board-menu">
                         <button>자세히보기</button>
-                        <button id="menu-clock"><img src="src/refresh.svg"> <time id="js-clock1">00:00</time>
-                            기준</button>
+                        <button id="menu-clock" onclick="location.href='/parking/'">
+                            <time id="js-clock1">00:00</time> 기준</button>
                     </div>
                 </div>
 
@@ -53,15 +53,16 @@
 
             <div class="car-section">
                 <h3>승용차 주차구역</h3>
-                <span class="ca-section">혼잡</span>
+                <span class="ca-section"><span id="complex_2"></span></span>
                 <div class="board">
                     <p>이용가능</p>
                     <div style="height: 50%; padding: 7%;">
-                        <h1><a href="/parking/truck/">3면 / 8면</a></h1>
+                        <h1><a href="/parking/car/" style="text-decoration: none; color: black;">0면 / 4면</a></h1>
                     </div>
                     <div class="board-menu">
                         <button>자세히보기</button>
-                        <button id="menu-clock"><time id="js-clock2">00:00</time> 기준</button>
+                        <button id="menu-clock" onclick="location.href='/parking/'">
+                            <time id="js-clock2">00:00</time> 기준</button>
                     </div>
                 </div>
             </div>
@@ -78,18 +79,23 @@
                 },
             {% endfor %}
         ]
-        let $area=[document.getElementById("p_area1"), document.getElementById("p_area2"),
-            document.getElementById("p_area3"),document.getElementById("p_area4"),document.getElementById("p_area5"),
-        document.getElementById("p_area6"),document.getElementById("p_area7"),document.getElementById("p_area8"),]
-        for(let i=0;i<$area.length;i++) {
-            if (posts[i].state == "True") {
-                $area[i].style['backgroundColor'] = "#bac3c6";
-                $area[i].style['color'] = "#bac3c6";
-            } else {
-                $area[i].style['backgroundColor'] = "#4666b2"
-                $area[i].style['color'] = "#4666b2"
+        const $word = document.querySelector('#word');
+        const $complex_1=document.querySelector('#complex_1');
+        const $complex_2=document.querySelector('#complex_2');
+        let cnt=0;
+        for(let i=0;i<8;i++) {
+            if (posts[i].state == "1") {
+                cnt+=1;
             }
         }
+        if(cnt>=3){
+            $complex_1.textContent="혼잡";
+        }
+        else{
+            $complex_1.textContent="여유";
+        }
+            $complex_2.textContent="여유";
+        $word.textContent=cnt;
     </script>
 
 {% endblock %}

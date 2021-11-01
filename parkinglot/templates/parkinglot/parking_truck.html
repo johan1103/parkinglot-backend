@@ -16,18 +16,18 @@
                     <li>
                         <a href="/parking/">주차장 현황</a>
                         <ul>
-                            <li><a href="/parking/car/">화물차 주자장</a></li>
-                            <li><a href="/parking/truck/">승용차 주차장</a></li>
+                            <li><a href="/parking/truck/">화물차 주자장</a></li>
+                            <li><a href="/parking/car/">승용차 주차장</a></li>
                         </ul>
                     </li>
                     <br>
-                    <li>
-                        <a href="#0">작업 현황</a>
-                        <ul>
-                            <li><a href="#0">본선 작업</a></li>
-                            <li><a href="#0">야드 작업</a></li>
-                        </ul>
-                    </li>
+{#                    <li>#}
+{#                        <a href="#0">작업 현황</a>#}
+{#                        <ul>#}
+{#                            <li><a href="#0">본선 작업</a></li>#}
+{#                            <li><a href="#0">야드 작업</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
 
                     <li class="small"><a target="blank" href="https://lab.hanium.or.kr/21_HP048/21_hp048">21_HP048
                         GitLab</a></li>
@@ -42,15 +42,16 @@
             </div> -->
 
             <p id="section-name">화물차 주차구역</p>
-            <button id="refresh-button"><time id="js-clock1">00:00</time> 기준  <img src="src/refresh.svg"></button>
+            <button id="refresh-button" onclick="location.href='/parking/truck/'">
+                <time id="js-clock1">00:00</time> 기준 </button>
 
             <div class="parking-lot">
                 <ul id="parkSlide">
                     <li class="park">
                         <div class="parktable_1" id="p_area1">1</div>
                         <div class="parktable_1" id="p_area2">2</div>
-                        <div class="parktable_1" id="p_area3">3</div>
                         <div class="parktable_1" id="p_area4">4</div>
+                        <div class="parktable_1" id="p_area3">3</div>
 
                         <div class="parktable_1 parkarea_under" id="p_area5">5</div>
                         <div class="parktable_1 parkarea_under" id="p_area6">6</div>
@@ -90,13 +91,16 @@
             document.getElementById("p_area3"),document.getElementById("p_area4"),document.getElementById("p_area5"),
         document.getElementById("p_area6"),document.getElementById("p_area7"),document.getElementById("p_area8"),]
         for(let i=0;i<$area.length;i++) {
-            if (posts[i].state == "True") {
-                $area[i].style['backgroundColor'] = "#bac3c6";
-                $area[i].style['color'] = "#bac3c6";
+            //let tmp= parseInt(posts[i].location);
+            if (posts[i].state == "1") {
+                $area[i].style['backgroundColor'] = "#4666b2";
+                $area[i].style['color'] = "#4666b2";
             } else {
-                $area[i].style['backgroundColor'] = "#4666b2"
-                $area[i].style['color'] = "#4666b2"
+                $area[i].style['backgroundColor'] = "#bac3c6"
+                $area[i].style['color'] = "#bac3c6"
             }
         }
+        let link ='/parking/truck/';
+
     </script>
 {% endblock %}

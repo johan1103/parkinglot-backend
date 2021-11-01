@@ -292,6 +292,7 @@ header {
 
 #refresh-button {
   /*border-style: none;*/
+  width: 31vw;
   position: relative;
   left: 15vw;
   /*background-color: rgb(244, 244, 244);*/
@@ -401,13 +402,13 @@ input {
 }
 
 .parkarea_under {
-  margin-top: 22vh;
+  margin-top: 15vh;
 }
 
 .parking-lot-status {
   height: 30vh;
   display: block;
-  margin-top: 5vh;
+  /*margin-top: 5vh;*/
 }
 .park_status {
   /* position: absolute; */

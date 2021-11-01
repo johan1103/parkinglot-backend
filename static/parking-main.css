@@ -1,7 +1,6 @@
 * {
   font-family: "Nanum Gothic", sans-serif;
 }
-
 .board {
   width: 73vw;
   height: 23vh;
@@ -29,7 +28,7 @@
 }
 #menu-clock {
   position: relative;
-  left: 25%;
+  left:8%;
 }
 .truck-section{
   width: 100%;
