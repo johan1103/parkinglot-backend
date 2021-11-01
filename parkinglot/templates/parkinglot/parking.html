@@ -79,6 +79,13 @@
                 },
             {% endfor %}
         ]
+        if(posts.length==0){
+            for(let i=0;i<8;i++)
+            posts[i]={
+                location:String(i),
+                state:"False"
+            }
+        }
         const $word = document.querySelector('#word');
         const $complex_1=document.querySelector('#complex_1');
         const $complex_2=document.querySelector('#complex_2');
