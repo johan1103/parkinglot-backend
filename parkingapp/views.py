@@ -14,7 +14,7 @@ class ParkingView(View):
         data = json.loads(request.body)
         for i in data:
             if ParkingState.objects.filter(location=i).exists()==False:
-                if i<=8:
+                if int(i)<=8:
                     Parking_data=ParkingState.objects.create(
                         location=i,
                         state=str(data[i])
