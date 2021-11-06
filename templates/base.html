@@ -12,6 +12,31 @@
     <link rel="stylesheet" type="text/css" href="{% static 'parking-car-truck.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'parking-main.css' %}">
 
+    <!-- PWA화, 여기부터 -->
+  <!-- [iOS 사파리에 대응] -->
+    <!-- 주소창 등의 웹 브라우저 UI를 표시하지 않기 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 상태 바의 스타일을 지정 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- 홈 화면에서 표시되는 앱 이름을 지정 -->
+    <meta name="apple-mobile-web-app-title" content="어디라카고">
+    <!-- 홈 화면에서 표시되는 앱 아이콘을 지정 -->
+    <link rel="apple-touch-icon" href="src/logo.ico/apple-icon-152x152.png">
+
+ <!-- [Android와 PC, 크롬·엣지에 대응] -->
+    <!-- 웹 앱 매니페스트를 읽어 들이기 -->
+    <link rel="manifest" href="manifest.json">
+    <!-- 서비스 워커를 등록 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('js/sw.js')
+        .then((reg) => {
+          console.log('서비스 워커가 등록됨.', reg);
+        });
+      }
+    </script>
+
+
 </head>
 <body>
 {% block content %}
